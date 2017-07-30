@@ -19,11 +19,11 @@ double wordaverage(char *s){
     char *nextline;
     int words;
 
-    nextline = strtok(s, LINE_DELIMITERS);
+    nextline = strtok_r(s, LINE_DELIMITERS);
     if(nextline == NULL)
         return 0.0;
     words = wordcount(nextline);
-    while((nextline = strok(NULL, LINE_DELIMITERS)) != NULL){
+    while((nextline = strtok_r(NULL, LINE_DELIMITERS)) != NULL){
         words += wordcount(nextline);
         linecount++;
     }
