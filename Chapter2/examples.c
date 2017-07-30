@@ -1,8 +1,10 @@
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
 
 int main(){
     int fildes;
     if(close(fildes) == -1)
-        perror("Failed to close the file"); // errno : EBADF, EINTR
+    fprintf(stderr, "Failed to close file decsriptor %d: %s\n",
+        fildes, strerror(errno));
 }
