@@ -34,7 +34,7 @@ int makeargv(const char *s, const char* delimiters, char*** argvp){
     if(numtokens == 0)
         free(t);
     else{
-        strcpy(t, snew);
+        strcpy(t, snew); // because strtok modified "t"
         **argvp = strtok(t, delimiters);
         for(i=1; i<numtokens;i++)
             *((*argvp)+i) = strtok(NULL, delimiters);
