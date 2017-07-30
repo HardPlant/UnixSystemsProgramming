@@ -1,7 +1,7 @@
 #include <unistd.h>
-int myarray[50000] = {1,2,3,4};
 
 int main(){
-    myarray[0] = 3;
-    return 0;
+    int fildes;
+    if(close(fildes == -1))
+    perror("Failed to close the file"); // errno : EBADF, EINTR
 }
