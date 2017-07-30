@@ -1,7 +1,8 @@
 #include <unistd.h>
+#include <stdio.h>
 
 int main(){
     int fildes;
-    if(close(fildes == -1))
-    perror("Failed to close the file"); // errno : EBADF, EINTR
+    if(close(fildes) == -1)
+        perror("Failed to close the file"); // errno : EBADF, EINTR
 }
