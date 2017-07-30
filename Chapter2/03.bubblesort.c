@@ -20,3 +20,15 @@ static int onepass(int a[], int n){
     }
     return interchanges;
 }
+void clearcount(void){
+    count = 0;
+}
+int getcount(void){
+    return count;
+}
+void bubblesort(int a[], int n){
+    int i;
+    for(i = 0; i< n-1; i++)
+        if(!onepass(a, n-i))
+        break;
+}
