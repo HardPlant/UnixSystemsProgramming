@@ -7,7 +7,7 @@ static int wordcount(char *s){
 
     if(strtok(s, WORD_DELIMITERS) == NULL)
         return 0;
-    while(strtok(NULL, WORD_DELIMITERS))
+    while(strtok(NULL, WORD_DELIMITERS)) // not safe; this func uses static
         count++;
     return count;
 }
