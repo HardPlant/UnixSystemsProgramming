@@ -41,11 +41,8 @@ int makeargv(const char *s, const char* delimiters, char*** argvp){
     }
     *((*argvp)+numtokens) = NULL; // last NULL pointer
     return numtokens;
-
-
-
-
 }
+
 int main(int argc, char* argv[]){
     char delim[] = " \t";
     int i;
