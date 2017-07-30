@@ -15,7 +15,7 @@ int makeargv(const char *s, const char* delimiters, char*** argvp){
         errno = EINVAL;
         return -1;
     }
-    *argvp = NULL; // strspn get length for delims on first to last
+    *argvp = NULL; // strspn get first length for delims on first to last
     snew = s + strspn(s, delimiters); // snew, 새 문자열 시작점 (처음 구분자 지나침)
     if ((t = malloc(strlen(snew)+1)) == NULL)
         return -1;
@@ -35,7 +35,7 @@ int makeargv(const char *s, const char* delimiters, char*** argvp){
         free(t);
     else{
         strcpy(t, snew);
-        *argvp = strtok(t, delimiters);
+        **argvp = strtok(t, delimiters);
         for(i=1; i<numtokens;i++)
             *((*argvp)+i) = strtok(NULL, delimiters);
     }
@@ -47,10 +47,22 @@ int makeargv(const char *s, const char* delimiters, char*** argvp){
 
 }
 int main(int argc, char* argv[]){
-    char** argvp;
+    char delim[] = " \t";
+    int i;
+    char **myargv;
+    int numtokens;
 
-    makeargv(argv[0]," ", &argvp);
-    printf("%s\n", argvp[0]);
-
+    if (argc != 2){
+        fprintf(stderr,"Usage: %s string\n", argv[0]);
+        return 1;
+    }
+    if ((numtokens = makeargv(argv[1], delim, &myargv)) == -1){
+        fprintf(stderr, "Failed to construct an argument array for %s\n",
+            argv[1]);
+        return 1;
+    }
+    printf("The argument array contains:\n");
+    for(i=0; i<numtokens; i++)
+        printf("%d:%s\n", i, myargv[i] );
     return 0;
 }
