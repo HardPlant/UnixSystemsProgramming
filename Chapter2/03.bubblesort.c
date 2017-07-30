@@ -5,6 +5,7 @@
 #include <stdio.h>
 
 static int count = 0;
+// internal linkage; this var will only used in this c file(bubblesort.c)
 static int onepass(int a[], int n){
     int i;
     int interchanges = 0;
