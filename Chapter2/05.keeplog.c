@@ -19,4 +19,17 @@ int main(int argc, char *argv[]){
         fprintf(stderr, "Usage:%s [history]\n", argv[0]);
         return 1;
     }
+    while(fgets(cmd, MAX_CANON,stdin) != NULL){
+        if(*(cmd+strlen(cmd)-1) == '\n')
+            *(cmd+strlen(cmd)-1) = 0;
+        if (history && !strcmp(cmd, "history"))
+            showhistory(stdout);
+        else if (runproc(cmd)){
+            perror("Failed to execute command");
+            break;
+        }
+    }
+    printf("\n\n>>>>>The list of commands executed is:\n");
+    showhistory(stdout);
+    return 0;
 }
