@@ -14,7 +14,7 @@ static list_t endlist;
 static list_t *headptr = NULL;
 static list_t *tailptr = NULL;
 static list_t **travptrs = NULL;
-static list_t travptrs_size = 0;
+static int travptrs_size = 0;
 
 int accessdata(void){ // return positive if success
     int i;
