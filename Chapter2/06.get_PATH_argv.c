@@ -1,16 +1,17 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-
+#define PATH_DELIMITERS ":"
 int makeargv(const char *s, const char* delimiters, char*** argvp);
 extern char **environ;
-
-int main(){
+char** getpath(void){
     char** myargv;
+    char* path;
     int i;
-    int argc = makeargv(getenv("PATH"),":",&myargv);
-    for(i=0;i<argc;i++){
-        printf("%d:%s\n", i, myargv[i]);
-    }
-    return 0;
+
+    path = getenv("PATH");
+    if(makeargv(path,PATH_DELIMITERS,&myargv) == -1)
+        return NULL;
+    else
+        return myargv;
 }
